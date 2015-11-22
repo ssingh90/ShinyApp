@@ -11,47 +11,57 @@ shinyUI(fluidPage(
         
       fluidRow(
         
+        column(12, 
+               h5("About this app:"),
+               helpText("Knowing when you are ovulating can boost your chances of getting pregnant.", 
+                        "Fill out the fields below and then click the 'Get Fertile Window' button to find out when you're ovulating.")
+                      
+               ),
+        
           column(12, 
                dateInput("lmp", 
-                         label = h5("First Day of Last Menstrual Period"), 
+                         label = h4("First Day of Last Menstrual Period"), 
                          value = Sys.Date())
                ),
     
         
           column(12, 
                 numericInput("cycle", 
-                            label = h5("Average Length of Cycle (Days)"), 
+                            label = h4("Average Length of Cycle (Days)"), 
                             value = 28)
-                )   ,
-          column(12, 
-               h3("Cycle"),
-               helpText("Your average monthly cycle")
                 ),
         
+          
+          column(12, 
+               h6("Average Length of Cycle is calculated as:"), 
+                         helpText("From first day of your period to the first day of your next period. Ranges from: 22 to 44. Leave 28 if unsure") 
+                ),
+      
           column(12,
               submitButton("Get Fertile Window")
                 )
-      )),
+    )),
       
       
   mainPanel(
     h3("Ovulation Calculator Results"),
     
-    textOutput("text1"),
-    textOutput("text2"),
+    h5(textOutput("text1")),
+    h5(textOutput("text2")),
     p(),
     p(),
-    textOutput("text3"),
-    textOutput("text4")
+    h4(textOutput("text3")),
+    tags$head(tags$style("#text3{color: blue;
+                                 font-size: 20px;
+                         font-style: italic;
+                         }"
     
-  
-    
-      
+    ))
+    )    
    
-  )
-  )
-    
 )
+)
+
 
 
 
